@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <link rel="stylesheet" href="static/style.css">
+        <title>AstonFly</title>
+    </head>
+    <body>
+        <h1 class="mt-4 text-center">Welcome to your simulator of mass and equilibrium! </h1>
+        <div class="container d-flex justify-content-center">
+            <div class="card-contain-input">
+                <div class="input-group d-flex align-items-center my-3">
+                    <span class="input-group-text">Bem and Level Arm</span>
+                    <input type="number" id="bem-input" aria-label="First name" class="form-control">
+                    <input type="number"  id="level-bem-input" aria-label="Last name" class="form-control">
+                    <p style="margin-bottom: 0px;margin-left: 20px;" id="moment-bem-input"></p>
+                </div>
+                {%for i in range(0, size)%}
+                    <div class="input-group my-3 d-flex align-items-center">
+                        <span class="input-group-text" id="basic-addon1">{{ conditions[i] }}</span>
+                        <input type="number" class="form-control" id="{{conditions[i]}}-input" aria-label="Username" aria-describedby="basic-addon1">
+                        <p style="margin-bottom: 0px;margin-left: 20px;" id="moment-{{conditions[i]}}-input"></p>
+                    </div>
+                {%endfor%}
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-light-blue" id="add-rm">+</button>
+                </div>
+                <div class="input-group my-3 d-flex align-items-center">
+                    <span class="input-group-text" id="basic-addon1">RM and Level Arm</span>
+                    <input type="number" class="form-control" id="rm-input" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="number" id="rm-level-input" disabled aria-label="Last name" class="form-control">
+                    <p style="margin-bottom: 0px;margin-left: 20px;" id="moment-rm-input"></p>
+                </div>
+                <div class="input-group d-flex align-items-center my-3">
+                    <span class="input-group-text">TAXI and Level Arm</span>
+                    <input type="number" id="taxi-input" value="3" aria-label="First name" class="form-control">
+                    <input type="number" id="taxi-level-input" disabled value="1.22" aria-label="Last name" class="form-control">
+                    <p style="margin-bottom: 0px;margin-left: 20px;" id="moment-taxi-input">3.66</p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-light-blue" id="minus-taxi">-</button>
+                </div>
+                <div class="input-group my-3 d-flex align-items-center">
+                    <span class="input-group-text" id="basic-addon1">TOM and Level Arm</span>
+                    <input type="number" class="form-control" id="tom-input" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="number" id="tom-level-input" disabled aria-label="Last name" class="form-control">
+                    <p style="margin-bottom: 0px;margin-left: 20px;" id="moment-tom-input"></p>
+                </div>
+                <div class="input-group my-3 d-flex align-items-center">
+                    <span class="input-group-text" id="basic-addon1">TRIP</span>
+                    <input type="number" class="form-control" id="trip-input" aria-label="Username" aria-describedby="basic-addon1">
+                    <p style="margin-bottom: 0px;margin-left: 20px;" id="moment-trip-input"></p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-light-blue" id="minus-trip">-</button>
+                </div>
+                <div class="input-group d-flex align-items-center my-3">
+                    <span class="input-group-text">Landing Mass and Level Arm</span>
+                    <input type="number" id="landing-input" aria-label="First name" class="form-control">
+                    <input type="number" id="level-landing-input" disabled aria-label="Last name" class="form-control">
+                    <p style="margin-bottom: 0px;margin-left: 20px;" id="moment-landing-input"></p>
+                </div>
+                <div class="input-group my-3 d-flex align-items-center">
+                    <span class="input-group-text" id="basic-addon1">Fuel to Alternate</span>
+                    <input type="number" class="form-control" id="fuel-input" aria-label="Username" aria-describedby="basic-addon1">
+                    <p style="margin-bottom: 0px;margin-left: 20px;" id="moment-fuel-input"></p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-light-blue" id="minus-lm">-</button>
+                </div>
+                <div class="input-group d-flex align-items-center my-3">
+                    <span class="input-group-text">Landing</span>
+                    <input type="number" id="landing-alternate-input" aria-label="First name" class="form-control">
+                    <input type="number" id="level-landing-alternate-input" disabled aria-label="Last name" class="form-control">
+                    <p style="margin-bottom: 0px;margin-left: 20px;" id="moment-landing-alternate-input"></p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-light-blue" id="moment-btn">Calculate Moment</button>
+                </div>
+                <div class="future-link"></div>
+            </div>
+        </div>
+        <div> {% block graph %}{% endblock %} </div>
+    </body>
+    <script src="../static/form_ans.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</html>

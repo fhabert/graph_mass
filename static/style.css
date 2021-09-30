@@ -1,0 +1,20 @@
+.card-contain-input {
+    width: 600px;
+    box-shadow: 0 10px 15px rgba(0,0,0,.2);
+    border-radius: 20px;
+    padding: 20px 20px;
+    margin-top: 50px;
+}
+.btn-light-blue {
+    border-radius: 15px;
+    padding: 5px 15px;
+    border: 1px solid rgb(49, 49, 144);
+    background-color: #fff;
+    color: rgb(49, 49, 144);
+}
+.btn-light-green {
+    border-radius: 15px;
+    padding: 5px 15px;
+    background-color: rgb(63, 144, 94);
+    color: white;
+}
