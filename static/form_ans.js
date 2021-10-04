@@ -111,7 +111,9 @@ if (momentBtn) {
             pointsGraph.push(xsGraph[i]);
             pointsGraph.push(ysGraph[i]);
         }
-        futureLink.insertAdjacentHTML('beforeend', `<a href="/graph?points=${pointsGraph}" class="btn btn-light-green" id="link-graph">Show Graph</a>`)
+        const plane = document.getElementById('plane-input').value;
+        const infoDb = [plane, btmHtml[0].value, btmHtml[2].value];
+        futureLink.insertAdjacentHTML('beforeend', `<a href="/graph?points=${pointsGraph}&db=${infoDb}" class="btn btn-light-green" id="link-graph">Show Graph</a>`)
     })
 }
 

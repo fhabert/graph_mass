@@ -10,6 +10,8 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
+import database
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "PaRiS"
@@ -27,6 +29,7 @@ def home():
 @app.route('/graph', methods=['GET', 'POST'])
 def graph():
     points = request.args.get('points')
+    db = request.args.get('db').split(',')
     points_list_string = points.split(',')
     li_total = []
     for item in points_list_string:
@@ -40,6 +43,7 @@ def graph():
     fig = create_figure(x_values, y_values)
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
+    database.insert_data(get_data_for_db(db))
     return Response(output.getvalue(), mimetype='image/png')
 
 def create_figure(x_values, y_values):
@@ -68,6 +72,12 @@ def create_figure(x_values, y_values):
     axis.plot(xs, ys, color='blue')
     axis2.scatter(x_values, y_values,  color="red")
     return fig
+
+def get_data_for_db(db):
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    data = [current_time, db[0], db[1], db[2]]
+    return data
 
 if __name__ == '__main__':
     app.run(debug=True)
